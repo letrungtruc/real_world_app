@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+tag_list = ["hello 1", "hello 2"].map { |tag| tag_list = tag }
+
+Article.create title: "hello", body: "body", description: "description", tag_list: tag_list
+Article.create title: "hello", body: "body", description: "description", tag_list: tag_list
+Article.create title: "hello", body: "body", description: "description", tag_list: tag_list
