@@ -4,6 +4,6 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @articles = Article.find_by_slug(slug)
+    @articles = Article.find_by(slug: params[:slug])
   end
 end
