@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180514050515) do
+ActiveRecord::Schema.define(version: 20180514102709) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title",           limit: 255
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20180514050515) do
     t.datetime "created_at",                                         null: false
     t.datetime "updated_at",                                         null: false
     t.string   "tag_list",        limit: 255,   default: "--- []\n"
+    t.integer  "author_id",       limit: 4
   end
 
   create_table "authors", force: :cascade do |t|
@@ -32,6 +33,15 @@ ActiveRecord::Schema.define(version: 20180514050515) do
     t.boolean  "following",              default: false
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
+    t.integer  "article_id", limit: 4
+    t.integer  "comment_id", limit: 4
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string   "body",       limit: 255
+    t.integer  "author_id",  limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
 end
