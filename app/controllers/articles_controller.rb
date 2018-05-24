@@ -4,6 +4,15 @@ class ArticlesController < ApplicationController
     if params[:author]
       @articles = @articles.joins(:author).where(users: {username: params[:author]})
     end
+
+    if params[:favorited]
+      user = User.find_by_username(params[:favorited])
+      if user.present?
+        @articles = @articles.joins(:favorites).where(favorites: {user_id: user.id})
+      else
+        @articles = []
+      end
+    end
   end
 
   def show
