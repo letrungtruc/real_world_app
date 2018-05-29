@@ -2,16 +2,16 @@ class ArticlesController < ApplicationController
   def index
     @articles = Article.all
     if params[:author]
-      @articles = @articles.joins(:author).where(users: {username: params[:author]})
+      @articles = Article.filter_by_author(params[:author])
     end
 
     if params[:favorited]
-      user = User.find_by_username(params[:favorited])
-      if user.present?
-        @articles = @articles.joins(:favorites).where(favorites: {user_id: user.id})
-      else
-        @articles = []
-      end
+      @articles = Article.filter_by_favorite(params[:favorited])
+      @articles = [] unless @articles
+    end
+
+    if params[:tag]
+      @articles = Article.filter_by_tag(params[:tag])
     end
   end
 
